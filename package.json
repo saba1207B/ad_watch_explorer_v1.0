@@ -1,0 +1,19 @@
+{
+  "name": "watch-explorer",
+  "version": "1.0.0",
+  "description": "3D Watch Exploded-View Explorer — Interactive mechanical watch component visualization",
+  "main": "main.js",
+  "scripts": {
+    "build:css": "npx @tailwindcss/cli -i src/input.css -o styles.css",
+    "dev": "npx @tailwindcss/cli -i src/input.css -o styles.css && npx electron .",
+    "start": "npx electron ."
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.0",
+    "electron": "^33.4.11",
+    "tailwindcss": "^4.1.0"
+  },
+  "dependencies": {
+    "three": "^0.170.0"
+  }
+}

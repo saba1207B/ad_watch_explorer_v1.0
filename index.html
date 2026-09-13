@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURELION — The Sovereign</title>
+  <meta name="description" content="The Sovereign by AURELION. A skeleton masterpiece. Where every gear is a poem. Limited to 500 pieces worldwide.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ===== SCROLL PROGRESS ===== -->
+  <div id="scroll-progress"></div>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav id="nav">
+    <div class="nav-logo">AURELION</div>
+    <a href="#cta-section" class="nav-btn" id="nav-reserve-btn">Reserve Now</a>
+  </nav>
+
+  <!-- ===== STICKY IMAGE SEQUENCE CANVAS ===== -->
+  <div id="sequence-container">
+    <canvas id="watch-canvas"></canvas>
+    <!-- Gradient overlays -->
+    <div class="seq-overlay seq-top"></div>
+    <div class="seq-overlay seq-bottom"></div>
+    <div class="seq-overlay seq-left"></div>
+    <div class="seq-overlay seq-right"></div>
+  </div>
+
+  <!-- ===== SCROLLABLE CONTENT ===== -->
+  <div id="page-content">
+
+    <!-- ===== SECTION 1: HERO (over frame 1) ===== -->
+    <section id="hero-section">
+      <div class="hero-inner" id="hero-text">
+        <p class="eyebrow">Swiss Haute Horlogerie · Est. 1873</p>
+        <h1 class="hero-title">THE<br>SOVEREIGN</h1>
+        <p class="hero-sub">by <span>AURELION</span></p>
+        <p class="hero-tagline">Every gear is a poem.<br>Every second is a promise.</p>
+        <div class="scroll-cue">
+          <div class="scroll-line"></div>
+          <span>Scroll to discover</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SECTION 2: SCROLL SCRUB (drives image sequence) ===== -->
+    <section id="scrub-section">
+      <!-- Floating label that appears mid-explosion -->
+      <div class="scrub-label" id="label-skeleton">
+        <span class="label-tag">Skeleton Architecture</span>
+        <p>The open-worked dial reveals the beating heart of mechanical artistry — over 312 individual components working in perfect concert.</p>
+      </div>
+
+      <div class="scrub-label scrub-label-right" id="label-gears">
+        <span class="label-tag">Golden Gear Train</span>
+        <p>18K gold-treated wheels spin across three distinct planes. The gear train transmits energy from the mainspring with jewel-level precision.</p>
+      </div>
+
+      <div class="scrub-label" id="label-explosion">
+        <span class="label-tag">300 Moving Parts</span>
+        <p>An explosion of craft. Every component hand-finished and individually inspected before assembly by a single master watchmaker.</p>
+      </div>
+
+      <div class="scrub-label scrub-label-right" id="label-reassemble">
+        <span class="label-tag">Back to Life</span>
+        <p>Watch the mechanism come alive again. Each gear clicking into place — an act of rebirth. Powered by 72 hours of pure energy.</p>
+      </div>
+    </section>
+
+    <!-- ===== SECTION 3: SPECS GRID ===== -->
+    <section id="specs-section">
+      <div class="specs-header">
+        <h2 class="section-title">Engineered to Perfection</h2>
+        <div class="title-rule"></div>
+      </div>
+      <div class="specs-grid">
+        <div class="spec-card" data-delay="0">
+          <div class="spec-icon">⚙️</div>
+          <div class="spec-number">312</div>
+          <div class="spec-label">Individual Components</div>
+          <div class="spec-desc">Each hand-finished to mirror polish</div>
+        </div>
+        <div class="spec-card" data-delay="100">
+          <div class="spec-icon">⏱</div>
+          <div class="spec-number">72h</div>
+          <div class="spec-label">Power Reserve</div>
+          <div class="spec-desc">Bidirectional automatic winding</div>
+        </div>
+        <div class="spec-card" data-delay="200">
+          <div class="spec-icon">💎</div>
+          <div class="spec-number">31</div>
+          <div class="spec-label">Jewel Bearings</div>
+          <div class="spec-desc">Ruby precision at every pivot</div>
+        </div>
+        <div class="spec-card" data-delay="300">
+          <div class="spec-icon">🌊</div>
+          <div class="spec-number">100m</div>
+          <div class="spec-label">Water Resistance</div>
+          <div class="spec-desc">Hermetic Oyster case sealing</div>
+        </div>
+        <div class="spec-card" data-delay="400">
+          <div class="spec-icon">🔬</div>
+          <div class="spec-number">±2s</div>
+          <div class="spec-label">Daily Accuracy</div>
+          <div class="spec-desc">COSC-certified chronometer</div>
+        </div>
+        <div class="spec-card" data-delay="500">
+          <div class="spec-icon">✦</div>
+          <div class="spec-number">500</div>
+          <div class="spec-label">Pieces Worldwide</div>
+          <div class="spec-desc">Each numbered and certified</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SECTION 4: QUOTE ===== -->
+    <section id="quote-section">
+      <blockquote class="luxury-quote">
+        <p>"A watch is not a timekeeper. It is time made visible — a miniature universe governed by laws of physics and devotion."</p>
+        <cite>— Master Watchmaker, AURELION Atelier</cite>
+      </blockquote>
+    </section>
+
+    <!-- ===== SECTION 5: CTA ===== -->
+    <section id="cta-section">
+      <div class="cta-inner" id="cta-card">
+        <div class="cta-emblem">✦</div>
+        <p class="cta-eyebrow">The Sovereign Collection · 2026</p>
+        <div class="cta-price">$12,500</div>
+        <p class="cta-edition">Limited Edition · 500 pieces · Numbered Certificate Included</p>
+        <button class="reserve-btn" id="main-reserve-btn">
+          <span>Reserve Your Piece</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+        <div class="cta-perks">
+          <div class="cta-perk">
+            <span>✈</span> Complimentary worldwide delivery
+          </div>
+          <div class="cta-perk">
+            <span>🛡</span> 5-year international warranty
+          </div>
+          <div class="cta-perk">
+            <span>📜</span> Signed certificate of authenticity
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="site-footer">
+      <div class="footer-logo">AURELION</div>
+      <p class="footer-tagline">Where Precision Meets Art</p>
+      <div class="footer-rule"></div>
+      <p class="footer-copy">© 2026 AURELION Horlogerie · Swiss Made · All Rights Reserved</p>
+    </footer>
+
+  </div>
+
+  <!-- ===== RESERVE MODAL ===== -->
+  <div id="reserve-modal" class="modal-overlay">
+    <div class="modal-box">
+      <button class="modal-close" id="modal-close">✕</button>
+      <div class="modal-emblem">✦</div>
+      <h3 class="modal-title">Reserve The Sovereign</h3>
+      <p class="modal-sub">Complete your reservation and a personal horologist will contact you within 24 hours.</p>
+      <form class="modal-form" id="reserve-form">
+        <input type="text" placeholder="Your Full Name" required>
+        <input type="email" placeholder="Email Address" required>
+        <input type="tel" placeholder="Phone Number">
+        <select>
+          <option value="" disabled selected>Preferred Case Material</option>
+          <option>Titanium DLC</option>
+          <option>904L Stainless Steel</option>
+          <option>18K Rose Gold</option>
+          <option>Ceramic Black</option>
+        </select>
+        <button type="submit" class="modal-submit">Confirm Reservation</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="sequence.js"></script>
+</body>
+</html>

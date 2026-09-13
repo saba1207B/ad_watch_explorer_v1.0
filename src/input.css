@@ -1,0 +1,577 @@
+@import "tailwindcss";
+
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --color-gold: #c9a84c;
+  --color-gold-light: #e0c878;
+  --color-gold-dark: #a08030;
+}
+
+/* ============================================================
+   COLOR SYSTEM — Dark Luxury
+   ============================================================ */
+:root {
+  --gold: #c9a84c;
+  --gold-rgb: 201, 168, 76;
+  --gold-light: #e0c878;
+  --gold-dark: #a08030;
+  --bg-primary: #0a0908;
+  --bg-secondary: #110f0c;
+  --bg-card: rgba(18, 14, 8, 0.55);
+  --text-primary: #f5f0e8;
+  --text-secondary: rgba(245, 240, 232, 0.4);
+  --text-muted: rgba(245, 240, 232, 0.2);
+  --border-subtle: rgba(201, 168, 76, 0.1);
+  --border-card: rgba(201, 168, 76, 0.12);
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(201, 168, 76, 0.15) transparent;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(201, 168, 76, 0.25);
+  color: var(--text-primary);
+}
+
+/* ============================================================
+   3D VIEWPORT (fixed backdrop)
+   ============================================================ */
+#viewport {
+  background: var(--bg-primary);
+}
+
+#viewport canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ============================================================
+   SCROLL PROGRESS BAR
+   ============================================================ */
+#scroll-progress {
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
+  box-shadow: 0 0 12px rgba(201, 168, 76, 0.4);
+  will-change: width;
+}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+#nav {
+  transition: background 0.5s ease, backdrop-filter 0.5s ease, border-color 0.5s ease;
+  border-bottom: 1px solid transparent;
+}
+
+#nav.scrolled {
+  backdrop-filter: blur(20px) saturate(1.3);
+  -webkit-backdrop-filter: blur(20px) saturate(1.3);
+  background: rgba(10, 9, 8, 0.65);
+  border-bottom-color: var(--border-subtle);
+}
+
+.nav-brand {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.nav-brand.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nav-cta {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  padding: 9px 28px;
+  text-decoration: none;
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.08), transparent);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.nav-cta:hover {
+  border-color: var(--gold);
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.12);
+}
+
+.nav-cta:hover::before {
+  opacity: 1;
+}
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+#hero {
+  pointer-events: none;
+  will-change: opacity;
+}
+
+.hero-kicker {
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.8rem;
+  opacity: 0;
+  animation: fadeSlideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+}
+
+.hero-brand {
+  font-family: var(--font-serif);
+  font-size: clamp(3.5rem, 9vw, 8rem);
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  color: var(--text-primary);
+  line-height: 0.95;
+  margin-bottom: 0.8rem;
+  text-shadow: 0 0 80px rgba(201, 168, 76, 0.08);
+  opacity: 0;
+  animation: fadeSlideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+}
+
+.hero-model {
+  font-size: clamp(0.6rem, 1.2vw, 0.85rem);
+  font-weight: 300;
+  letter-spacing: 0.6em;
+  color: var(--gold);
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeSlideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+}
+
+.hero-tagline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(0.85rem, 1.4vw, 1.15rem);
+  font-weight: 400;
+  color: var(--text-secondary);
+  opacity: 0;
+  animation: fadeSlideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 1.0s forwards;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  opacity: 0;
+  animation: fadeSlideUp 1s ease 1.5s forwards;
+}
+
+.scroll-hint-text {
+  font-size: 0.55rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.scroll-arrow-track {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, rgba(201, 168, 76, 0.15), transparent);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-arrow-dot {
+  width: 3px;
+  height: 12px;
+  border-radius: 2px;
+  background: var(--gold);
+  position: absolute;
+  left: -1px;
+  animation: scrollDotDrop 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* ============================================================
+   FEATURE CARDS (scroll-driven)
+   ============================================================ */
+.feature-card {
+  position: absolute;
+  top: 50%;
+  width: 340px;
+  padding: 2.2rem 2rem;
+  background: var(--bg-card);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  border: 1px solid var(--border-card);
+  opacity: 0;
+  pointer-events: auto;
+  will-change: opacity, transform;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.3;
+}
+
+.card-left {
+  left: 6%;
+  transform: translateY(-50%) translateX(-40px);
+}
+
+.card-left.visible {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+.card-right {
+  right: 6%;
+  transform: translateY(-50%) translateX(40px);
+}
+
+.card-right.visible {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+.feature-number {
+  font-family: var(--font-serif);
+  font-size: 0.7rem;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.feature-title {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.35rem;
+}
+
+.feature-material {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+}
+
+.feature-divider {
+  height: 1px;
+  background: linear-gradient(to right, var(--gold), transparent);
+  margin: 1.2rem 0;
+  width: 50px;
+}
+
+.feature-desc {
+  font-size: 0.78rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 1.2rem;
+}
+
+.feature-specs {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.feature-spec-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.feature-spec-row span:first-child {
+  color: var(--text-muted);
+}
+
+.feature-spec-row span:last-child {
+  color: var(--gold);
+  font-weight: 500;
+}
+
+/* ============================================================
+   PRICING / CTA SECTION
+   ============================================================ */
+#pricing {
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(10, 9, 8, 0.8) 30%,
+    var(--bg-primary) 60%);
+}
+
+.pricing-card {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pricing-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pricing-emblem {
+  font-size: 1.8rem;
+  color: var(--gold);
+  margin-bottom: 1.2rem;
+  text-shadow: 0 0 20px rgba(201, 168, 76, 0.3);
+}
+
+.pricing-kicker {
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.2rem;
+}
+
+.pricing-price {
+  font-family: var(--font-serif);
+  font-size: clamp(3.5rem, 7vw, 5.5rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  margin-bottom: 0.6rem;
+  background: linear-gradient(135deg, var(--text-primary), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.pricing-edition {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.03em;
+}
+
+/* CTA Button */
+.cta-button {
+  position: relative;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  padding: 16px 56px;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  background: transparent;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cta-button:hover {
+  background: var(--gold);
+  color: var(--bg-primary);
+  box-shadow:
+    0 0 40px rgba(201, 168, 76, 0.25),
+    0 0 80px rgba(201, 168, 76, 0.08);
+  letter-spacing: 0.28em;
+}
+
+.cta-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transition: left 0.6s ease;
+}
+
+.cta-button:hover .cta-shine {
+  left: 100%;
+}
+
+/* Perks */
+.pricing-perks {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.perk {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.03em;
+}
+
+.perk-icon {
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+#footer {
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.footer-brand {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  letter-spacing: 0.25em;
+  color: var(--gold);
+  margin-bottom: 0.4rem;
+}
+
+.footer-tagline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 1.2rem;
+}
+
+.footer-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  margin: 0 auto 1.2rem;
+  opacity: 0.2;
+}
+
+.footer-copy {
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scrollDotDrop {
+  0% {
+    top: -12px;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    top: 48px;
+    opacity: 0;
+  }
+}
+
+/* ============================================================
+   CUSTOM SCROLLBAR (Webkit)
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(201, 168, 76, 0.12);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(201, 168, 76, 0.25);
+}
+
+/* ============================================================
+   RESPONSIVE TWEAKS
+   ============================================================ */
+@media (max-width: 1100px) {
+  .feature-card {
+    width: 280px;
+    padding: 1.6rem;
+  }
+  .card-left { left: 3%; }
+  .card-right { right: 3%; }
+}
+
+@media (max-width: 800px) {
+  .feature-card {
+    width: 240px;
+    padding: 1.2rem;
+  }
+  .feature-title { font-size: 1.2rem; }
+  .feature-desc { font-size: 0.72rem; }
+}
